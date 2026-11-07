@@ -1,0 +1,378 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Sel Ballesteros Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout concept: a quiet editorial column. Each project is a row with the pipeline drawn as a node chain, the one signature element. */
+:root {
+  --bg: #F2F4F2;
+  --fg: #15211D;
+  --muted: #55645E;
+  --line: #D3DBD7;
+  --accent: #0B6B5A;
+  --chip: #E1ECE8;
+  --node: #E7EDEA;
+  --f-display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0D1412; --fg: #E6EEEA; --muted: #94A59E; --line: #25322D;
+    --accent: #5CD3B6; --chip: #172520; --node: #16221E; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0D1412; --fg: #E6EEEA; --muted: #94A59E; --line: #25322D;
+  --accent: #5CD3B6; --chip: #172520; --node: #16221E; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--f-body); font-size: 16px; line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0;
+}
+.wrap { max-width: 1040px; margin: 0 auto; }
+a { color: var(--accent); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.top { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; padding-block: 20px; }
+.top .name { font-family: var(--f-display); font-weight: 600; font-size: 1.05rem; }
+.top nav { display: flex; gap: 20px; font-size: .92rem; }
+.top nav a { color: var(--muted); text-decoration: none; }
+.top nav a:hover { color: var(--fg); }
+
+.hero { padding-block: 56px 48px; border-bottom: 1px solid var(--line); }
+.eyebrow { font-family: var(--f-mono); font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin: 0 0 16px; }
+h1 { font-family: var(--f-display); font-weight: 700; font-size: clamp(2.2rem, 6vw, 4.1rem); line-height: 1.04; letter-spacing: -.02em; margin: 0 0 24px; max-width: 16ch; text-wrap: balance; }
+.lede { font-size: 1.15rem; max-width: 60ch; color: var(--fg); margin: 0 0 24px; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 0 0 32px; padding: 0; list-style: none; color: var(--muted); font-size: .92rem; }
+.facts li::before { content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); margin-right: 8px; vertical-align: middle; }
+
+/* node chain */
+.flow { display: flex; flex-wrap: wrap; gap: 8px 0; margin: 0; padding: 0; list-style: none; font-family: var(--f-mono); font-size: .76rem; }
+.flow li { background: var(--node); border: 1px solid var(--line); padding: 5px 10px; border-radius: 4px; position: relative; margin-right: 22px; min-width: 0; }
+.flow li:not(:last-child)::after { content: ""; position: absolute; left: 100%; top: 50%; width: 22px; height: 1px; background: var(--accent); }
+.flow li:not(:last-child)::before { content: ""; position: absolute; left: calc(100% + 17px); top: calc(50% - 3px); width: 6px; height: 6px; border-top: 1px solid var(--accent); border-right: 1px solid var(--accent); transform: rotate(45deg); }
+.flow li.hl { border-color: var(--accent); color: var(--accent); }
+
+section { padding-block: 56px; border-bottom: 1px solid var(--line); }
+h2 { font-family: var(--f-display); font-weight: 650; font-size: clamp(1.5rem, 3.4vw, 2.1rem); letter-spacing: -.01em; margin: 0 0 8px; text-wrap: balance; }
+.sec-intro { color: var(--muted); max-width: 62ch; margin: 0 0 36px; }
+
+.case { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 16px 40px; padding-block: 32px; border-top: 1px solid var(--line); }
+.case:first-of-type { border-top: 0; padding-top: 0; }
+.case h3 { font-family: var(--f-display); font-weight: 650; font-size: 1.3rem; line-height: 1.2; margin: 0 0 12px; text-wrap: balance; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.tags li { font-family: var(--f-mono); font-size: .72rem; background: var(--chip); color: var(--fg); padding: 3px 8px; border-radius: 3px; }
+.case .body { min-width: 0; }
+.case .body p { margin: 0 0 14px; max-width: 64ch; }
+.case .label { font-family: var(--f-mono); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 2px; }
+.case .flow { margin-top: 18px; }
+.also { color: var(--muted); font-size: .93rem; }
+.plain { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.plain li { margin: 0; max-width: 70ch; }
+.plain strong { font-weight: 600; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 32px 40px; }
+.grid h3 { font-family: var(--f-display); font-size: 1.05rem; font-weight: 650; margin: 0 0 8px; }
+.grid p { margin: 0; color: var(--muted); font-size: .96rem; }
+.stack-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 8px 40px; padding-block: 16px; border-top: 1px solid var(--line); align-items: baseline; }
+.stack-row:first-of-type { border-top: 0; }
+.stack-row h3 { font-family: var(--f-display); font-size: 1.05rem; font-weight: 650; margin: 0; }
+
+.contact { border-bottom: 0; padding-bottom: 40px; }
+.mail { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin: 20px 0 0; }
+.mail code { font-family: var(--f-mono); font-size: 1rem; background: var(--chip); padding: 8px 12px; border-radius: 4px; overflow-wrap: anywhere; user-select: all; }
+.mail button { font: inherit; font-size: .92rem; font-weight: 500; background: var(--accent); color: var(--bg); border: 0; padding: 9px 16px; border-radius: 4px; cursor: pointer; }
+.mail button:hover { opacity: .9; }
+.note { color: var(--muted); font-size: .88rem; margin-top: 40px; max-width: 62ch; }
+
+@media (max-width: 760px) {
+  .case, .stack-row { grid-template-columns: minmax(0, 1fr); }
+  .hero { padding-block: 40px 36px; }
+  section { padding-block: 44px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <span class="name">Sel Ballesteros</span>
+    <nav aria-label="Sections">
+      <a href="#work">Work</a>
+      <a href="#make">Make.com</a>
+      <a href="#experience">Experience</a>
+      <a href="#toolkit">Toolkit</a>
+      <a href="#hire">Hire me</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <p class="eyebrow">Automation and backend</p>
+    <h1>I build the automations operations teams run on.</h1>
+    <p class="lede">Backend and automation manager with four years of hands-on delivery in n8n, Make and Monday.com. I connect booking platforms, Slack, spreadsheets and data warehouses so that routine work runs itself and people can get answers without asking an engineer.</p>
+    <ul class="facts">
+      <li>Pila, Laguna, Philippines</li>
+      <li>Remote, project-based</li>
+      <li>4 years automating tourism operations</li>
+    </ul>
+    <ol class="flow" aria-label="Typical pipeline">
+      <li>Booking platform</li>
+      <li class="hl">n8n / Make</li>
+      <li>BigQuery / Sheets</li>
+      <li>Slack / Monday.com</li>
+    </ol>
+  </div>
+
+  <section id="work">
+    <h2>Selected work</h2>
+    <p class="sec-intro">Built for a tour operator running multi-city tours, cooking classes and OTA distribution. Client names, figures and internal screens are withheld. I can walk through any of these in detail on a call.</p>
+
+    <article class="case">
+      <div>
+        <h3>Slack bot that explains what happened to a booking</h3>
+        <ul class="tags"><li>n8n</li><li>Slack API</li><li>LLM</li><li>Data tables</li></ul>
+      </div>
+      <div class="body">
+        <p><span class="label">Problem</span>When a guide, price or balance changed on a booking, the reason sat in a long audit log that only a few people could read. Support and ops waited on the tech team for every answer.</p>
+        <p><span class="label">What I built</span>Anyone mentions the bot with a booking reference and a question. It reads the booking's full history without any ability to change it, parses every entry, and replies in the thread with the cause. Follow-up questions continue in the same thread without another mention. I extended the same pattern to product and promotion logs.</p>
+        <p class="also">Design choice: strictly read-only, so the bot can explain a booking but can never alter one.</p>
+        <ol class="flow">
+          <li>@mention in Slack</li><li>Extract booking ref</li><li class="hl">Read-only log fetch</li><li>Parse history</li><li>LLM explains cause</li><li>Threaded reply</li>
+        </ol>
+      </div>
+    </article>
+
+    <article class="case">
+      <div>
+        <h3>Review Desk, a web app in front of a fragile spreadsheet</h3>
+        <ul class="tags"><li>n8n webhooks</li><li>Web app</li><li>Google Sheets</li><li>OpenAI</li></ul>
+      </div>
+      <div class="body">
+        <p><span class="label">Problem</span>Customer reviews from several platforms were logged by editing a shared Google Sheet by hand. Rows could be overwritten and low ratings were logged without evidence.</p>
+        <p><span class="label">What I built</span>A small web app for logging reviews. Each entry is validated on save, and anything under five stars needs a screenshot. An LLM call suggests whether a complaint is about the guide or something else. Edits go into a queue and a writer workflow flushes it into the sheet every minute, while a snapshot copied every 10 minutes keeps the app fast. Direct edit access to the sheet was removed.</p>
+        <ol class="flow">
+          <li>Web app</li><li class="hl">Save webhook + validation</li><li>Edit queue</li><li>Writer, every 1 min</li><li>Sheet</li>
+        </ol>
+      </div>
+    </article>
+
+    <article class="case">
+      <div>
+        <h3>Booking balance alerts</h3>
+        <ul class="tags"><li>n8n</li><li>Webhooks</li><li>Slack</li><li>Data tables</li></ul>
+      </div>
+      <div class="body">
+        <p><span class="label">Problem</span>Overpaid or part-paid bookings were found late, often only at reconciliation time.</p>
+        <p><span class="label">What I built</span>A watcher that posts to Slack when a booking's balance goes off or changes, and replies in the same thread once it returns to zero. It combines a webhook queue, a 5-minute check and a daily sweep so a missed event cannot hide a problem. A companion batch job read each flagged booking's log and stored the cause.</p>
+        <p class="also">Related data work: recovered 444 bookings missing from the master sheet by looking them up directly in the booking API and appending what it found.</p>
+        <ol class="flow">
+          <li>Webhook queue</li><li>5-min check</li><li>Daily sweep</li><li class="hl">Compare to known balance</li><li>Slack alert</li><li>Thread reply when settled</li>
+        </ol>
+      </div>
+    </article>
+
+    <article class="case">
+      <div>
+        <h3>Monthly performance snapshots</h3>
+        <ul class="tags"><li>n8n</li><li>Monday.com</li><li>BigQuery</li><li>Google Sheets</li><li>Slack</li></ul>
+      </div>
+      <div class="body">
+        <p><span class="label">Problem</span>Team leads wanted regular numbers on reviews, sales, merchandise and upgrades, but the data lived across Monday boards, a warehouse and several sheets.</p>
+        <p><span class="label">What I built</span>A monthly pipeline that joins the three sources across a five-layer team structure and posts to each team's Slack channel. It picks one of three message templates (standard tour, cooking class, single-tour destination), unifies four cooking class types, and ranks city-level sales leaderboards where team-level attribution was not possible.</p>
+        <ol class="flow">
+          <li>Monthly schedule</li><li>Monday + BigQuery + Sheets</li><li class="hl">Roll up by team layer</li><li>Choose template</li><li>Slack post</li>
+        </ol>
+      </div>
+    </article>
+
+    <article class="case">
+      <div>
+        <h3>Review ingestion across platforms</h3>
+        <ul class="tags"><li>n8n</li><li>Partner APIs</li><li>Monday.com</li><li>LLM</li></ul>
+      </div>
+      <div class="body">
+        <p><span class="label">Problem</span>Reviews arrived on several marketplaces, each with its own format and account, and replies were written from scratch.</p>
+        <p><span class="label">What I built</span>Pipelines that pull reviews from each platform, remove duplicates, match them to the right guide, draft a reply, and write everything to one unified Monday.com board. Reviews under five stars follow a separate path.</p>
+        <ol class="flow">
+          <li>Platform APIs</li><li>De-duplicate</li><li class="hl">Match guide</li><li>Draft reply</li><li>Unified board</li>
+        </ol>
+      </div>
+    </article>
+
+    <article class="case">
+      <div>
+        <h3>Partner settlements and invoicing</h3>
+        <ul class="tags"><li>n8n</li><li>Monday.com</li><li>Google Sheets</li><li>Excel export</li><li>Email</li><li>BigQuery</li></ul>
+      </div>
+      <div class="body">
+        <p><span class="label">Problem</span>Month-end statements for partners and suppliers were assembled by hand, and every correction meant redoing the summary.</p>
+        <p><span class="label">What I built</span>On the first of each month, a workflow pulls the previous cycle's bookings, totals them per partner, applies manual adjustments from a sheet, and files the result on a Monday.com board. It builds a spreadsheet and Excel breakdown and emails the partner with a response link to confirm or dispute. Promo-code partners run through a second stream, adjustment problems raise an alert, and a corrected summary can be re-sent through one generic webhook. A companion invoice flow handles disputed and approved states, confirmation and upload.</p>
+        <ol class="flow">
+          <li>1st of month</li><li>Pull bookings</li><li class="hl">Total per partner</li><li>Apply adjustments</li><li>Sheet + Excel breakdown</li><li>Email: confirm or dispute</li>
+        </ol>
+      </div>
+    </article>
+
+    <article class="case">
+      <div>
+        <h3>Offboarding and HR automation</h3>
+        <ul class="tags"><li>Make.com</li><li>Monday.com</li><li>Forms</li><li>GraphQL</li></ul>
+      </div>
+      <div class="body">
+        <p><span class="label">Problem</span>Offboarding steps lived in email threads and memory, and HR depended on someone technical for every change.</p>
+        <p><span class="label">What I built</span>A Monday.com offboarding board driven by a Make scenario. A submitted form triggers the notice email and creates the board with its checklist. I made the logic readable enough that HR can ask for changes directly, and tested edits on a copy of the scenario before touching the live one. I also wrote plain-English documentation of recruitment, onboarding and offboarding scenarios for a leadership presentation.</p>
+        <ol class="flow">
+          <li>HR form</li><li class="hl">Make scenario</li><li>Notice email</li><li>Offboarding board</li><li>Checklist groups</li>
+        </ol>
+      </div>
+    </article>
+
+    <article class="case">
+      <div>
+        <h3>Google review replies across a dozen business profiles</h3>
+        <ul class="tags"><li>n8n</li><li>Google Business Profile API</li><li>Monday.com GraphQL</li><li>LLM</li><li>Slack</li></ul>
+      </div>
+      <div class="body">
+        <p><span class="label">Problem</span>Replying to Google reviews meant checking each business profile by hand. Reviews with a star rating but no text, and reviews logged but never answered, slipped through.</p>
+        <p><span class="label">What I built</span>One hourly poller that replaced a separate workflow per location. It reads the list of live locations from a Monday.com board, so adding a location means adding a row. A shared review agent removes duplicates against the board, logs each review, decides whether it needs a reply (including star-only reviews), drafts one with an LLM, posts it through the Google API, and writes the outcome back to the board and Slack. Every failure branch raises a Slack alert.</p>
+        <p class="also">Debugging worth noting: I traced a silent loss of items (50 in, 34 out) to a built-in node that batched many lookups into one call, and a sub-workflow that returned only its last branch. I replaced both with direct API calls and an explicit merge step.</p>
+        <ol class="flow">
+          <li>Hourly schedule</li><li>Live locations from Monday</li><li>Fetch reviews</li><li class="hl">De-duplicate + log</li><li>LLM drafts reply</li><li>Post to Google</li><li>Outcome to board + Slack</li>
+        </ol>
+      </div>
+    </article>
+
+    <article class="case">
+      <div>
+        <h3>Automatic offer re-apply on bookings</h3>
+        <ul class="tags"><li>n8n</li><li>Webhooks</li><li>Booking API</li><li>Slack</li></ul>
+      </div>
+      <div class="body">
+        <p><span class="label">Problem</span>When a sales channel removed a discount from an existing booking, someone had to notice and re-apply it by hand.</p>
+        <p><span class="label">What I built</span>A webhook receives every booking update, checks whether an offer was removed, matches it to the right internal offer, and re-applies it through the booking API. Slack gets a summary of what changed. A discount with no internal match stops and raises an alert instead of guessing, with instructions for the fix.</p>
+        <ol class="flow">
+          <li>Booking update webhook</li><li>Offer removed?</li><li class="hl">Match internal offer</li><li>Re-apply via API</li><li>Slack summary</li>
+        </ol>
+      </div>
+    </article>
+
+    <article class="case">
+      <div>
+        <h3>Daily tour reminders for guides and hosts</h3>
+        <ul class="tags"><li>n8n</li><li>Monday.com</li><li>Slack Block Kit</li><li>Google Sheets</li></ul>
+      </div>
+      <div class="body">
+        <p><span class="label">Problem</span>Guides and hosts needed a dependable heads-up about the next day's tours, without checking a scheduling board.</p>
+        <p><span class="label">What I built</span>At 8 PM local time, a workflow pulls tomorrow's tours from the scheduling board, skips cancelled ones, and splits multiple guides and hosts. It matches each person to a private Slack channel from a directory sheet, tags them by looking up their Slack account by email, and sends one message per person, sorted by time, even when they have several tours. Each message says plainly that pax can still change, and warns when a tour shows zero pax. I migrated it from Make to n8n.</p>
+        <ol class="flow">
+          <li>Daily 8 PM</li><li>Tomorrow's tours</li><li>Skip cancelled</li><li class="hl">Match to directory</li><li>Tag in Slack</li><li>One message per person</li>
+        </ol>
+      </div>
+    </article>
+
+    <article class="case">
+      <div>
+        <h3>Multi-agent customer service design</h3>
+        <ul class="tags"><li>n8n</li><li>Twilio</li><li>Dialpad</li><li>ElevenLabs</li></ul>
+      </div>
+      <div class="body">
+        <p><span class="label">Problem</span>Customer questions by phone and text were answered one at a time by staff, including many routine ones.</p>
+        <p><span class="label">What I designed</span>An architecture for AI agents with a four-tier escalation hierarchy, tying together telephony, voice, SMS, workflow automation and the booking and operations systems, so routine questions are resolved early and complex ones reach a person with context.</p>
+        <ol class="flow">
+          <li>Inbound call or SMS</li><li class="hl">Tier 1</li><li>Tier 2</li><li>Tier 3</li><li>Tier 4</li>
+        </ol>
+      </div>
+    </article>
+  </section>
+
+  <section id="make">
+    <h2>Make.com automation suite</h2>
+    <p class="sec-intro">Over four years I built and maintained more than 50 active Make.com scenarios that run daily operations. Several have since moved to n8n.</p>
+    <ul class="tags" style="margin-bottom:28px"><li>Make.com</li><li>Monday.com</li><li>Slack</li><li>Google Sheets</li><li>Gmail</li><li>Forms</li><li>Rezdy</li><li>TourOptima</li></ul>
+    <ul class="plain">
+      <li><strong>HR lifecycle.</strong> Guide and host onboarding, internal team onboarding with scheduled follow-ups, offboarding, two-stage recruitment including a follow-up for unsuccessful applicants, time-off requests and reminders, overtime reports, and a daily checklist check.</li>
+      <li><strong>Accounts and financial reporting.</strong> Weekly and monthly financial reports keyed by tour ID, guide and host rate calculation, daily expense reminders, and an accounts database that feeds reporting.</li>
+      <li><strong>Review management.</strong> An incident form that assigns an owner and alerts Slack, review status tracking, and accountability reports on reviews needing attention.</li>
+      <li><strong>Bookings and product sync.</strong> Booking intake from two partner channels, product create, update and delete sync with a channel manager, tour time and booking reference syncs with an operations system, plus CRM and promo-code flows.</li>
+      <li><strong>Operational Slack reminders.</strong> Fixed-time tour reminders, monthly availability and payment reminders, quarterly survey reminders, and new-tour request and booking notifications.</li>
+      <li><strong>Refunds and IT requests.</strong> Status-driven refund flows and IT request tracking on Monday.com.</li>
+      <li><strong>Slack AI agent.</strong> An agent for non-ticket FAQs with sub-agents that search the calendar and cancel bookings.</li>
+    </ul>
+  </section>
+
+  <section id="experience">
+    <h2>Experience</h2>
+    <p class="sec-intro">Four years at an international tour operator, working remotely from the Philippines with teams across operations, finance, HR and destinations.</p>
+    <div class="stack-row">
+      <h3>Business Process and Automation Manager<br><span class="also">Also titled Tech Backend Manager. Tour operator, 4 years.</span></h3>
+      <div>
+        <p style="margin:0 0 12px">Own and maintain the company's automation layer: more than 50 active Make.com scenarios, a large library of n8n workflows, Monday.com boards and automations, and the integrations that connect the booking platform, Slack, Google Sheets and BigQuery.</p>
+        <p style="margin:0 0 12px">Turn requests from non-technical teams into running systems, from month-end supplier payments for finance to offboarding flows for HR to booking investigations for operations.</p>
+        <p style="margin:0">Keep live systems healthy: retry queues, read-only access patterns, change testing on copies before touching production, and documentation others can use.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="toolkit">
+    <h2>Toolkit</h2>
+    <p class="sec-intro">The tools I use most, grouped by the job they do.</p>
+    <div class="stack-row"><h3>Automation</h3><ul class="tags"><li>n8n</li><li>Make.com</li><li>Monday.com automations</li><li>Webhooks</li><li>Sub-workflows</li><li>Scheduling and retry queues</li></ul></div>
+    <div class="stack-row"><h3>Data</h3><ul class="tags"><li>BigQuery</li><li>Google Sheets</li><li>Looker</li><li>Monday.com GraphQL API</li><li>Data tables</li></ul></div>
+    <div class="stack-row"><h3>Integrations</h3><ul class="tags"><li>Slack API</li><li>REST APIs</li><li>Booking platform APIs</li><li>OTA partner APIs</li><li>Google Business Profile API</li><li>Rezdy</li><li>TourOptima</li><li>Email</li></ul></div>
+    <div class="stack-row"><h3>AI and voice</h3><ul class="tags"><li>OpenAI</li><li>LLM classification and drafting</li><li>Twilio</li><li>Dialpad</li><li>ElevenLabs</li></ul></div>
+  </section>
+
+  <section id="hire">
+    <h2>What I can take on</h2>
+    <p class="sec-intro">Scoped projects with a clear deliverable, timeline and fee, agreed up front.</p>
+    <div class="grid">
+      <div><h3>Workflow automation</h3><p>Replace repetitive manual steps in n8n, Make or Monday.com, with error handling and a way to see what ran.</p></div>
+      <div><h3>System integrations</h3><p>Connect booking platforms, Slack, spreadsheets and warehouses so data moves without copy and paste.</p></div>
+      <div><h3>Internal tools</h3><p>Small web apps on top of existing sheets or boards, so teams stop editing fragile files directly.</p></div>
+      <div><h3>Reporting pipelines</h3><p>Scheduled reports from BigQuery, Sheets and Monday.com delivered where the team already works.</p></div>
+      <div><h3>AI-assisted workflows</h3><p>Question-answering bots, classification and reply drafting with the guardrails operations need.</p></div>
+      <div><h3>Documentation</h3><p>Plain-English write-ups of how your automations work, so non-technical staff can own them.</p></div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2>Let's talk about your project</h2>
+    <p class="sec-intro">Send a short note about what you want to automate and by when.</p>
+    <div class="mail">
+      <code id="addr">ballesterosrusselleva@gmail.com</code>
+      <button id="copy" type="button">Copy email</button>
+    </div>
+    <p class="note">Client details are withheld to respect confidentiality. Specifics are available on request.</p>
+  </section>
+</div>
+
+<script>
+(function () {
+  var btn = document.getElementById('copy');
+  var addr = document.getElementById('addr');
+  btn.addEventListener('click', function () {
+    var text = addr.textContent;
+    function fallback() {
+      var r = document.createRange(); r.selectNodeContents(addr);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      btn.textContent = 'Press copy to finish';
+    }
+    try {
+      navigator.clipboard.writeText(text).then(function () {
+        btn.textContent = 'Copied';
+        setTimeout(function () { btn.textContent = 'Copy email'; }, 1800);
+      }, fallback);
+    } catch (e) { fallback(); }
+  });
+})();
+</script>
+
+</body></html>
