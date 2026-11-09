@@ -106,6 +106,7 @@ h2 { font-family: var(--f-display); font-weight: 650; font-size: clamp(1.5rem, 3
     <span class="name">Sel Ballesteros</span>
     <nav aria-label="Sections">
       <a href="#work">Work</a>
+      <a href="#self">Self-built</a>
       <a href="#make">Make.com</a>
       <a href="#experience">Experience</a>
       <a href="#toolkit">Toolkit</a>
@@ -288,6 +289,43 @@ h2 { font-family: var(--f-display); font-weight: 650; font-size: clamp(1.5rem, 3
         <p><span class="label">What I designed</span>An architecture for AI agents with a four-tier escalation hierarchy, tying together telephony, voice, SMS, workflow automation and the booking and operations systems, so routine questions are resolved early and complex ones reach a person with context.</p>
         <ol class="flow">
           <li>Inbound call or SMS</li><li class="hl">Tier 1</li><li>Tier 2</li><li>Tier 3</li><li>Tier 4</li>
+        </ol>
+      </div>
+    </article>
+  </section>
+
+  <section id="self">
+    <h2>Self-built &amp; demos</h2>
+    <p class="sec-intro">Projects I built on my own, outside the day job — labelled honestly. One is a client-facing demo on sample data; the other is work for my own studio.</p>
+
+    <article class="case">
+      <div>
+        <h3>BuildHawk, a multi-agent AI employee hub</h3>
+        <ul class="tags"><li>Demo · sample data</li><li>n8n</li><li>OpenAI</li><li>Data tables</li></ul>
+      </div>
+      <div class="body">
+        <p><span class="label">Context</span>A prototype I built on my own with sample data, for a construction-tech brief. Not a deployed client system.</p>
+        <p><span class="label">Problem</span>The brief wanted three AI "employee" bots — operations, contract admin and finance — that could draft work but never act unsupervised, keep each client's data separate, and leave every money decision to a person.</p>
+        <p><span class="label">What I built</span>A multi-agent system: three bots and a human approval queue behind a private hub. Contract Admin checks a request belongs to the right client, runs a budget check, and drafts a purchase order saved as pending; Finance reviews and recommends; a person approves or rejects, and every action is written to an audit log. Client separation is enforced on every record, and approval and bank actions are gated so a bot can draft but never approve or pay.</p>
+        <p class="also">What I learned: a language model repeats whatever framing the data hands it, so the figures are computed in code and the model is forbidden to infer. It drafts; a human decides.</p>
+        <ol class="flow">
+          <li>Request</li><li class="hl">Client check</li><li>Budget check in code</li><li>Draft PO, pending</li><li>Human approval</li><li>Audit log</li>
+        </ol>
+      </div>
+    </article>
+
+    <article class="case">
+      <div>
+        <h3>Operation Ross, an airline-themed event platform</h3>
+        <ul class="tags"><li>Personal · my studio</li><li>Web app</li><li>n8n</li><li>Email automation</li></ul>
+      </div>
+      <div class="body">
+        <p><span class="label">Context</span>A self-initiated build for my own event business, Estudyo Digital.</p>
+        <p><span class="label">Problem</span>An event that needed more than a paper invitation — a themed, end-to-end guest flow from invite to keepsake, and a system I could reuse for future events instead of a one-off.</p>
+        <p><span class="label">What I built</span>A multi-page "airline" platform. Guests open a sealed digital invitation, RSVP to confirm their seat, and get a generated boarding pass saved to their phone and emailed automatically. Around that core: a day-of check-in page, a guest message collector, a cargo manifest, an in-browser game, and a post-event gallery with music. Static front-end pages over an automation backend that captures RSVPs and sends the passes.</p>
+        <p class="also">The reuse paid off: the check-in and message systems became the templates now running a larger 18th-birthday debut.</p>
+        <ol class="flow">
+          <li>Sealed invite</li><li class="hl">RSVP</li><li>Boarding pass</li><li>Emailed pass</li><li>Day-of check-in</li>
         </ol>
       </div>
     </article>
